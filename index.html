@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>五柱十字</title>
+    <meta
+      name="description"
+      content="输入精确到分钟的出生时间，生成五柱十字与五行分布，并寻找最近的完美十字。"
+    >
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="oracle-panel input-panel" aria-labelledby="app-title">
+        <div class="brand-row">
+          <img class="seal" src="assets/celestial-disc.svg" alt="">
+          <div>
+            <p class="eyebrow">甲子纪分</p>
+            <h1 id="app-title">五柱十字</h1>
+          </div>
+        </div>
+
+        <form id="birth-form" class="birth-form">
+          <label class="field">
+            <span>出生时间</span>
+            <input id="birth-time" name="birth-time" type="datetime-local" required>
+          </label>
+
+          <label class="field">
+            <span>时区</span>
+            <select id="timezone-offset" name="timezone-offset">
+              <option value="480" selected>UTC+08:00</option>
+              <option value="540">UTC+09:00</option>
+              <option value="420">UTC+07:00</option>
+              <option value="0">UTC+00:00</option>
+              <option value="-300">UTC-05:00</option>
+              <option value="-360">UTC-06:00</option>
+              <option value="-420">UTC-07:00</option>
+              <option value="-480">UTC-08:00</option>
+            </select>
+          </label>
+
+          <label class="switch">
+            <input id="early-zi" type="checkbox" checked>
+            <span>23:00 子初换日</span>
+          </label>
+
+          <button class="primary-action" type="submit">起盘</button>
+        </form>
+
+        <div class="method-note">
+          <strong>分柱</strong>
+          <span>00 分甲子，逐分顺行六十甲子。</span>
+        </div>
+      </section>
+
+      <section class="result-space" aria-live="polite">
+        <section class="oracle-panel chart-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">生辰十字</p>
+              <h2 id="chart-title">等待起盘</h2>
+            </div>
+            <span id="perfect-badge" class="badge">未起盘</span>
+          </div>
+
+          <div id="pillar-grid" class="pillar-grid"></div>
+        </section>
+
+        <section class="oracle-panel element-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">五行</p>
+              <h2>金木水火土</h2>
+            </div>
+            <span id="day-master" class="badge muted">日主</span>
+          </div>
+          <div id="element-bars" class="element-bars"></div>
+        </section>
+
+        <section class="oracle-panel nearest-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">最近</p>
+              <h2>五个完美十字</h2>
+            </div>
+          </div>
+          <div id="nearest-list" class="nearest-list"></div>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
