@@ -307,7 +307,7 @@ function formatDistance(deltaMinutes) {
 }
 
 function tenCharacters(chart) {
-  return chart.pillars.map((pillar) => pillar.name).join(" ");
+  return chart.pillars.map((pillar) => pillar.name).join("");
 }
 
 function renderPillars(chart) {
@@ -362,7 +362,6 @@ function renderNearest(matches, offsetMinutes) {
             <div class="nearest-distance">${formatDistance(deltaMinutes)}</div>
           </div>
           <div class="nearest-pillars">${tenCharacters(chart)}</div>
-          <span class="badge perfect">各二</span>
         </article>
       `,
     )
