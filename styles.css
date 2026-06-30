@@ -65,23 +65,11 @@ select {
   gap: 24px;
 }
 
-.brand-row,
 .panel-heading {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-}
-
-.brand-row {
-  justify-content: flex-start;
-}
-
-.seal {
-  width: 92px;
-  height: 92px;
-  flex: 0 0 auto;
-  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.3));
 }
 
 .eyebrow {
@@ -439,15 +427,6 @@ h2 {
 @media (max-width: 520px) {
   .shell {
     width: min(100% - 20px, 1180px);
-  }
-
-  .brand-row {
-    align-items: flex-start;
-  }
-
-  .seal {
-    width: 72px;
-    height: 72px;
   }
 
   .pillar-grid {
