@@ -314,12 +314,16 @@ function formatDistance(deltaMinutes) {
   return `${deltaMinutes < 0 ? "前" : "后"} ${parts.join("")}`;
 }
 
-function tenCharacters(chart) {
-  return chart.pillars.map((pillar) => pillar.name).join("");
+function tenCharacterCells(chart) {
+  return chart.pillars.flatMap((pillar) => [pillar.stem, pillar.branch]);
 }
 
-function pillarElementPairs(chart) {
-  return chart.pillars.map((pillar) => `${pillar.stemElement}${pillar.branchElement}`).join(" · ");
+function tenElementCells(chart) {
+  return chart.pillars.flatMap((pillar) => [pillar.stemElement, pillar.branchElement]);
+}
+
+function renderSequenceCells(values, className = "") {
+  return values.map((value) => `<span class="${className} ${value}">${value}</span>`).join("");
 }
 
 function renderPillars(chart) {
@@ -374,8 +378,8 @@ function renderNearest(matches, offsetMinutes) {
             <div class="nearest-distance">${formatDistance(deltaMinutes)}</div>
           </div>
           <div class="nearest-detail">
-            <div class="nearest-pillars">${tenCharacters(chart)}</div>
-            <div class="nearest-elements">${pillarElementPairs(chart)}</div>
+            <div class="nearest-pillars ten-sequence">${renderSequenceCells(tenCharacterCells(chart))}</div>
+            <div class="nearest-elements ten-sequence">${renderSequenceCells(tenElementCells(chart), "element-mark")}</div>
           </div>
         </article>
       `,

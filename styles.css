@@ -356,21 +356,54 @@ h2 {
 
 .nearest-detail {
   display: grid;
-  gap: 5px;
+  gap: 6px;
+  justify-content: start;
+}
+
+.ten-sequence {
+  display: grid;
+  width: min(100%, 20rem);
+  grid-template-columns: repeat(10, minmax(1.25em, 1fr));
+  gap: 3px;
+  align-items: center;
+  text-align: center;
 }
 
 .nearest-pillars {
   color: var(--gold);
-  font-size: 1.15rem;
+  font-size: 1.18rem;
   letter-spacing: 0;
-  word-break: keep-all;
 }
 
 .nearest-elements {
-  color: rgba(243, 234, 216, 0.72);
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   letter-spacing: 0;
-  word-break: keep-all;
+}
+
+.element-mark {
+  border-radius: 999px;
+  padding: 2px 0;
+  color: #150f0d;
+}
+
+.element-mark.木 {
+  background: #85b66f;
+}
+
+.element-mark.火 {
+  background: #d06b4f;
+}
+
+.element-mark.土 {
+  background: #d1ad67;
+}
+
+.element-mark.金 {
+  background: #d8d2b4;
+}
+
+.element-mark.水 {
+  background: #6aa9bf;
 }
 
 .empty-state {
