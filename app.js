@@ -10,6 +10,16 @@ const MS_PER_DAY = 24 * 60 * MS_PER_MINUTE;
 const JIA_ZI_DAY_UTC = Date.UTC(1912, 1, 18);
 const YEAR_ANCHOR = 1984;
 const MAX_SEARCH_MINUTES = 366 * 24 * 60;
+const TIMEZONE_LABELS = new Map([
+  [480, "中国 / 北京时间"],
+  [540, "日本 / 韩国时间"],
+  [420, "泰国 / 越南时间"],
+  [0, "英国 / 格林尼治时间"],
+  [-300, "美国东部时间"],
+  [-360, "美国中部时间"],
+  [-420, "美国山地时间"],
+  [-480, "美国太平洋时间"],
+]);
 
 const SOLAR_MONTH_TERMS = [
   { degree: 315, name: "立春" },
@@ -187,9 +197,7 @@ function formatLocalTime(utcMs, offsetMinutes) {
 }
 
 function formatOffset(minutes) {
-  const sign = minutes >= 0 ? "+" : "-";
-  const abs = Math.abs(minutes);
-  return `UTC${sign}${pad2(Math.floor(abs / 60))}:${pad2(abs % 60)}`;
+  return TIMEZONE_LABELS.get(minutes) || "出生地时区";
 }
 
 function sexagenaryYear(localYear, utcMs) {
@@ -310,6 +318,10 @@ function tenCharacters(chart) {
   return chart.pillars.map((pillar) => pillar.name).join("");
 }
 
+function pillarElementPairs(chart) {
+  return chart.pillars.map((pillar) => `${pillar.stemElement}${pillar.branchElement}`).join(" · ");
+}
+
 function renderPillars(chart) {
   const grid = document.querySelector("#pillar-grid");
   grid.innerHTML = chart.pillars
@@ -361,7 +373,10 @@ function renderNearest(matches, offsetMinutes) {
             <div class="nearest-time">${formatLocalTime(chart.utcMs, offsetMinutes)}</div>
             <div class="nearest-distance">${formatDistance(deltaMinutes)}</div>
           </div>
-          <div class="nearest-pillars">${tenCharacters(chart)}</div>
+          <div class="nearest-detail">
+            <div class="nearest-pillars">${tenCharacters(chart)}</div>
+            <div class="nearest-elements">${pillarElementPairs(chart)}</div>
+          </div>
         </article>
       `,
     )

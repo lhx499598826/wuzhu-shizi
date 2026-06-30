@@ -354,9 +354,21 @@ h2 {
   font-size: 0.88rem;
 }
 
+.nearest-detail {
+  display: grid;
+  gap: 5px;
+}
+
 .nearest-pillars {
   color: var(--gold);
   font-size: 1.15rem;
+  letter-spacing: 0;
+  word-break: keep-all;
+}
+
+.nearest-elements {
+  color: rgba(243, 234, 216, 0.72);
+  font-size: 0.9rem;
   letter-spacing: 0;
   word-break: keep-all;
 }
